@@ -1,4 +1,4 @@
-Client for `Genderize.io<http://genderize.io/>`_ web service.
+Client for `Genderize.io <http://genderize.io/>`_ web service.
 
 Basic usage
 -----------
