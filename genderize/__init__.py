@@ -79,5 +79,3 @@ class Genderize(object):
         @see: get
         """
         return self.get([name], **kwargs)[0]
-
-
