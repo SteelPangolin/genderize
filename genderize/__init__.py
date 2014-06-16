@@ -63,7 +63,7 @@ class Genderize(object):
         if response.ok:
             return [self._fixtypes(data) for data in decoded]
         else:
-            raise GenderizeException(decoded['error'], r.status)
+            raise GenderizeException(decoded['error'], response.status_code)
 
     def get1(self, name, **kwargs):
         """
