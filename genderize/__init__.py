@@ -59,11 +59,18 @@ class Genderize(object):
         response = self.session.get(
             'http://api.genderize.io/',
             params=params)
+
+        if 'application/json' not in response.headers.get('content-type', ''):
+            status = "server responded with {http_code}: {reason}".format(
+                http_code=response.status_code, reason=response.reason)
+            raise GenderizeException(
+                'response not in JSON format ({status})'.format(status=status))
+
         decoded = response.json()
         if response.ok:
             return [self._fixtypes(data) for data in decoded]
         else:
-            raise GenderizeException(decoded['error'], r.status)
+            raise GenderizeException(decoded['error'], response.status_code)
 
     def get1(self, name, **kwargs):
         """
@@ -72,5 +79,3 @@ class Genderize(object):
         @see: get
         """
         return self.get([name], **kwargs)[0]
-
-
