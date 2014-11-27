@@ -11,7 +11,7 @@ for line in sys.stdin:
     name = line.strip()
     try:
         data = g.get1(name)
-        print "{data[name]}: {data[gender]}".format(data=data)
+        print("{data[name]}: {data[gender]}".format(data=data))
     except GenderizeException:
         returncode = 1  # at least one lookup failed
         logging.error("Couldn't look up gender for %r", name, exc_info=True)
