@@ -8,7 +8,7 @@ Import the `Genderize` class and call its `get` method with a list of names.
 ::
 
     from genderize import Genderize
-    print Genderize().get(['James', 'Eva', 'Thunderhorse'])
+    print(Genderize().get(['James', 'Eva', 'Thunderhorse']))
 
 ::
 
