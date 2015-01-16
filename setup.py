@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-from pip.req import parse_requirements
 import re
 import io
 import os.path
@@ -16,11 +15,7 @@ with open(os.path.join(here, 'genderize/__init__.py')) as f:
             version = match.group(1)
             break
 
-# get requirements from Pip-style requirements.txt
-install_requires = [str(req.req) for req
-    in parse_requirements(os.path.join(here, 'requirements.txt'))]
-
-# get long from README.rst
+# get long desc from README.rst
 with io.open(os.path.join(here, 'README.rst')) as f:
     long_description = f.read()
 
@@ -33,7 +28,9 @@ setup(
     author_email='jeremy@bat-country.us',
     url='https://github.com/SteelPangolin/genderize',
     packages=find_packages(),
-    install_requires=install_requires,
+    install_requires=[
+        'requests >= 1.0.0',
+    ],
     include_package_data=True,
     classifiers=[
         'License :: OSI Approved :: MIT License',
