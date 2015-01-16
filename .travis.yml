@@ -1,8 +1,17 @@
 language: python
 python:
-  - "2.6"
-  - "2.7"
-  - "3.2"
-  - "3.3"
-  - "3.4"
+- '2.6'
+- '2.7'
+- '3.2'
+- '3.3'
+- '3.4'
 script: nosetests
+deploy:
+  provider: pypi
+  user: SteelPangolin
+  password:
+    secure: ESeqX6NhNQmNUOFwy5YS3JyZIQqL83zKTd69boBinjnOP8VfL/STfwN0/ZXTQE5+agJDoKN3jlLTbxYi8bgyp8GwD3P8nylg0Lx8VbjemOQcpSQ9zeRpIKGvz9EG50nWR+7vGJQIKsb5hWJDNtcPnYIDY/2tr/kFUzCG3jz6a0Y=
+  on:
+    tags: true
+    repo: SteelPangolin/genderize
+  distributions: "sdist bdist_wheel"
