@@ -25,7 +25,7 @@ class Genderize(object):
         @param user_agent: Optional user agent string.
         """
         if user_agent is None:
-            user_agent = 'Genderize/{}'.format(__version__)
+            user_agent = 'Genderize/{0}'.format(__version__)
 
         self.session = requests.Session()
         self.session.headers = {'User-Agent': user_agent}
