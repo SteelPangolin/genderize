@@ -1,5 +1,14 @@
 Client for `Genderize.io <http://genderize.io/>`_ web service.
 
+.. image:: https://img.shields.io/pypi/v/Genderize.svg?style=flat
+  :target: https://pypi.python.org/pypi/Genderize
+
+.. image:: https://img.shields.io/pypi/dm/Genderize.svg?style=flat
+  :target: https://pypi.python.org/pypi/Genderize
+
+.. image:: https://img.shields.io/travis/SteelPangolin/genderize.svg?style=flat
+  :target: https://travis-ci.org/SteelPangolin/genderize
+
 Basic usage
 -----------
 

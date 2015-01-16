@@ -1,6 +1,15 @@
 Change Log
 ----------
 
+0.1.3
+~~~~~
+
+2015-01-16
+
+* Supports Python 2.6, 2.7, 3.2, 3.3, and 3.4.
+* Added an integration test that calls the Genderize.io API server.
+* Now using Travis CI.
+
 0.1.2
 ~~~~~
 
