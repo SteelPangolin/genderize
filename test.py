@@ -12,4 +12,15 @@ def test_integration():
     }
     actual_genders = dict((elem['name'], elem['gender'])
                           for elem in Genderize().get(expected_genders.keys()))
-    assert expected_genders == actual_genders
+    assert expected_genders == actual_genders,\
+        "Expected {}, got {}".format(expected, actual)
+
+
+def test_integration_single():
+    """
+    Retrieve a single name.
+    """
+    expected = 'male'
+    actual = Genderize().get1('Peter')['gender']
+    assert expected == actual,\
+        "Expected {}, got {}".format(expected, actual)

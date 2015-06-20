@@ -68,7 +68,10 @@ class Genderize(object):
 
         decoded = response.json()
         if response.ok:
-            return self._fixtypes(decoded)
+            # API returns a single object for a single name but a list for multiple names.
+            if not isinstance(decoded, list):
+                decoded = [decoded]
+            return self._fixtypes([self._fixtypes(data) for data in decoded])
         else:
             raise GenderizeException(decoded['error'], response.status_code)
 
