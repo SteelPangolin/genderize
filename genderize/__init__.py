@@ -68,7 +68,7 @@ class Genderize(object):
 
         decoded = response.json()
         if response.ok:
-            return [self._fixtypes(data) for data in decoded]
+            return self._fixtypes(decoded)
         else:
             raise GenderizeException(decoded['error'], response.status_code)
 
