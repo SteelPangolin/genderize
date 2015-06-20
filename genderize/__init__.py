@@ -57,7 +57,7 @@ class Genderize(object):
             params.append(('language_id', language_id))
 
         response = self.session.get(
-            'http://api.genderize.io/',
+            'https://api.genderize.io/',
             params=params)
 
         if 'application/json' not in response.headers.get('content-type', ''):
