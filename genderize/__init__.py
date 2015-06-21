@@ -5,7 +5,7 @@ Client for Genderize.io web service.
 import requests
 
 __all__ = ['Genderize', 'GenderizeException']
-__version__ = '0.1.3'
+__version__ = '0.1.4'
 
 
 class GenderizeException(Exception):
@@ -22,9 +22,10 @@ class Genderize(object):
 
     def __init__(self, user_agent=None, api_key=None):
         """
-        @param user_agent: Optional user agent string.
-        @param user_agent: Optional API key.
-        @see: https://store.genderize.io/
+        :param user_agent: Optional user agent string.
+        :type user_agent: string
+        :param api_key: Optional API key.
+        :type api_key: string
         """
         if user_agent is None:
             user_agent = 'Genderize/{0}'.format(__version__)
@@ -39,6 +40,10 @@ class Genderize(object):
         """
         'probability' key is clearly supposed to be a float,
         but is sent as a string.
+
+        :type data: dict
+        :rtype: dict
+        :return: Same dict as input, modified in place.
         """
         if 'probability' in data:
             data['probability'] = float(data['probability'])
@@ -49,12 +54,17 @@ class Genderize(object):
         Look up gender for a list of names.
         Can optionally refine search with locale info.
 
-        @param names: List of names.
-        @param country_id: Optional ISO 3166-1 alpha-2 country code.
-        @param language_id: Optional ISO 639-1 language code.
-        @return: List of dicts containing 'name', 'gender',
+        :param names: List of names.
+        :type names: Iterable[str]
+        :param country_id: Optional ISO 3166-1 alpha-2 country code.
+        :type country_id: Optional[str]
+        :param language_id: Optional ISO 639-1 language code.
+        :type language_id: Optional[str]
+        :return: List of dicts containing 'name', 'gender',
                  'probability', 'count' keys. If 'gender' is None,
                  'probability' and 'count' will be omitted.
+        :rtype: Sequence[dict]
+        :raises GenderizeException: if API server responds with HTTP error code.
         """
         params = [('name[]', name) for name in names]
         if self.api_key is not None:
@@ -87,7 +97,6 @@ class Genderize(object):
     def get1(self, name, **kwargs):
         """
         Look up gender for a single name.
-
-        @see: get
+        :see: get
         """
         return self.get([name], **kwargs)[0]

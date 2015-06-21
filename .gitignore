@@ -5,3 +5,4 @@ dist
 venv
 build
 .idea
+docs/_build

@@ -1,3 +1,6 @@
+Genderize
+---------
+
 Client for `Genderize.io <https://genderize.io/>`_ web service.
 
 .. image:: https://img.shields.io/pypi/v/Genderize.svg?style=flat
@@ -9,10 +12,12 @@ Client for `Genderize.io <https://genderize.io/>`_ web service.
 .. image:: https://img.shields.io/travis/SteelPangolin/genderize.svg?style=flat
   :target: https://travis-ci.org/SteelPangolin/genderize
 
+
 Basic usage
 -----------
 
-Import the `Genderize` class and call its `get` method with a list of names.
+Import the :py:class:`~genderize.Genderize` class and call its
+:py:meth:`~genderize.Genderize.get` method with a list of names.
 
 ::
 
@@ -43,7 +48,7 @@ If run as a script, takes a list of names on stdin, and prints them with their g
 Advanced usage
 --------------
 
-Create a `Genderize` instance with a custom user agent,
+Create a :py:class:`~genderize.Genderize` instance with a custom user agent,
 and an `API key <https://store.genderize.io/>`_.
 Note that you'll need to use your own API key or this example won't work.
 
