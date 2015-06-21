@@ -1,4 +1,4 @@
-from genderize import Genderize
+from genderize import Genderize, GenderizeException
 
 
 def test_integration():
@@ -24,3 +24,15 @@ def test_integration_single():
     actual = Genderize().get1('Peter')['gender']
     assert expected == actual,\
         "Expected {}, got {}".format(expected, actual)
+
+
+def test_invalid_api_key():
+    """
+    Calls the API server with an invalid API key. Should result in an exception.
+    """
+    caught = False
+    try:
+        Genderize(api_key='invalid_api_key').get1('Peter')
+    except GenderizeException as e:
+        caught = True
+    assert caught, "Expected a GenderizeException to be thrown"

@@ -20,12 +20,16 @@ class Genderize(object):
     Uses a Requests session for persistent HTTP connections.
     """
 
-    def __init__(self, user_agent=None):
+    def __init__(self, user_agent=None, api_key=None):
         """
         @param user_agent: Optional user agent string.
+        @param user_agent: Optional API key.
+        @see: https://store.genderize.io/
         """
         if user_agent is None:
             user_agent = 'Genderize/{0}'.format(__version__)
+
+        self.api_key = api_key
 
         self.session = requests.Session()
         self.session.headers = {'User-Agent': user_agent}
@@ -51,6 +55,8 @@ class Genderize(object):
                  If 'gender' is None, 'probability' and 'count' will be omitted.
         """
         params = [('name[]', name) for name in names]
+        if self.api_key is not None:
+            params.append(('apikey', self.api_key))
         if country_id:
             params.append(('country_id', country_id))
         if language_id:
