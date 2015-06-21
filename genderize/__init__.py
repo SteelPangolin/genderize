@@ -37,7 +37,8 @@ class Genderize(object):
     @staticmethod
     def _fixtypes(data):
         """
-        'probability' key is clearly supposed to be a float but is sent as a string.
+        'probability' key is clearly supposed to be a float,
+        but is sent as a string.
         """
         if 'probability' in data:
             data['probability'] = float(data['probability'])
@@ -51,8 +52,9 @@ class Genderize(object):
         @param names: List of names.
         @param country_id: Optional ISO 3166-1 alpha-2 country code.
         @param language_id: Optional ISO 639-1 language code.
-        @return: List of dicts containing 'name', 'gender', 'probability', 'count' keys.
-                 If 'gender' is None, 'probability' and 'count' will be omitted.
+        @return: List of dicts containing 'name', 'gender',
+                 'probability', 'count' keys. If 'gender' is None,
+                 'probability' and 'count' will be omitted.
         """
         params = [('name[]', name) for name in names]
         if self.api_key is not None:
@@ -74,7 +76,8 @@ class Genderize(object):
 
         decoded = response.json()
         if response.ok:
-            # API returns a single object for a single name but a list for multiple names.
+            # API returns a single object for a single name
+            # but a list for multiple names.
             if not isinstance(decoded, list):
                 decoded = [decoded]
             return self._fixtypes([self._fixtypes(data) for data in decoded])

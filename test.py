@@ -13,7 +13,7 @@ def test_integration():
     actual_genders = dict((elem['name'], elem['gender'])
                           for elem in Genderize().get(expected_genders.keys()))
     assert expected_genders == actual_genders,\
-        "Expected {}, got {}".format(expected, actual)
+        "Expected {}, got {}".format(expected_genders, actual_genders)
 
 
 def test_integration_single():
@@ -28,11 +28,12 @@ def test_integration_single():
 
 def test_invalid_api_key():
     """
-    Calls the API server with an invalid API key. Should result in an exception.
+    Calls the API server with an invalid API key.
+    Should result in an exception.
     """
     caught = False
     try:
         Genderize(api_key='invalid_api_key').get1('Peter')
-    except GenderizeException as e:
+    except GenderizeException:
         caught = True
     assert caught, "Expected a GenderizeException to be thrown"
