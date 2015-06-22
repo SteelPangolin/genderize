@@ -10,6 +10,9 @@ API docs
    genderize
 
 
+.. include:: ../CHANGES.rst
+
+
 Indices and tables
 ------------------
 
