@@ -13,7 +13,7 @@ def test_integration():
     actual_genders = dict((elem['name'], elem['gender'])
                           for elem in Genderize().get(expected_genders.keys()))
     assert expected_genders == actual_genders,\
-        "Expected {}, got {}".format(expected_genders, actual_genders)
+        "Expected {0}, got {1}".format(expected_genders, actual_genders)
 
 
 def test_integration_single():
@@ -23,7 +23,7 @@ def test_integration_single():
     expected = 'male'
     actual = Genderize().get1('Peter')['gender']
     assert expected == actual,\
-        "Expected {}, got {}".format(expected, actual)
+        "Expected {0}, got {1}".format(expected, actual)
 
 
 def test_invalid_api_key():
