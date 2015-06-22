@@ -64,7 +64,7 @@ class Genderize(object):
                  'probability', 'count' keys. If 'gender' is None,
                  'probability' and 'count' will be omitted.
         :rtype: Sequence[dict]
-        :raises GenderizeException: if API server responds with HTTP error code.
+        :raises GenderizeException: if API server returns HTTP error code.
         """
         params = [('name[]', name) for name in names]
         if self.api_key is not None:
@@ -97,6 +97,6 @@ class Genderize(object):
     def get1(self, name, **kwargs):
         """
         Look up gender for a single name.
-        :see: get
+        See :py:meth:`get`.
         """
         return self.get([name], **kwargs)[0]
