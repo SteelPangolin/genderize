@@ -26,6 +26,7 @@ setup(
     long_description=long_description,
     author='Jeremy Ehrhardt',
     author_email='jeremy@bat-country.us',
+    license='MIT',
     url='https://github.com/SteelPangolin/genderize',
     packages=find_packages(),
     install_requires=[
