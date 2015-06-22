@@ -3,6 +3,9 @@ Genderize
 
 Client for `Genderize.io <https://genderize.io/>`_ web service.
 
+.. image:: https://img.shields.io/github/license/steelpangolin/genderize.svg?style=flat
+  :target: https://github.com/SteelPangolin/genderize
+
 .. image:: https://img.shields.io/pypi/v/Genderize.svg?style=flat
   :target: https://pypi.python.org/pypi/Genderize
 
@@ -11,6 +14,12 @@ Client for `Genderize.io <https://genderize.io/>`_ web service.
 
 .. image:: https://img.shields.io/travis/SteelPangolin/genderize.svg?style=flat
   :target: https://travis-ci.org/SteelPangolin/genderize
+
+.. image:: https://img.shields.io/codeclimate/github/SteelPangolin/genderize.svg?style=flat
+  :target: https://codeclimate.com/github/SteelPangolin/genderize
+
+.. image:: https://img.shields.io/codeclimate/github/SteelPangolin/genderize.svg?style=flat
+  :target: https://codeclimate.com/github/SteelPangolin/genderize
 
 .. image:: https://readthedocs.org/projects/genderize/badge/?style=flat
   :target: https://genderize.readthedocs.org/
