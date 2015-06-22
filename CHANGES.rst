@@ -1,6 +1,16 @@
 Change Log
 ----------
 
+0.1.4
+~~~~~
+
+2015-06-21
+
+* Switched to HTTPS endpoint.
+* Incorporated `granteagon <https://github.com/granteagon>`_'s `patch for `_fixtypes` <https://github.com/SteelPangolin/genderize/pull/2>`_.
+* Added support for paid API keys.
+* Included Sphinx API docs.
+
 0.1.3
 ~~~~~
 
