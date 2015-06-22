@@ -12,6 +12,9 @@ Client for `Genderize.io <https://genderize.io/>`_ web service.
 .. image:: https://img.shields.io/travis/SteelPangolin/genderize.svg?style=flat
   :target: https://travis-ci.org/SteelPangolin/genderize
 
+.. image:: https://readthedocs.org/projects/genderize/badge/?style=flat
+  :target: https://genderize.readthedocs.org/
+
 
 Basic usage
 -----------
