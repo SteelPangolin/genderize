@@ -49,7 +49,7 @@ class Genderize(object):
             data['probability'] = float(data['probability'])
         return data
 
-    def get(self, names, country_id=None, language_id=None):
+    def get(self, names, country_id=None, language_id=None, retheader=False):
         """
         Look up gender for a list of names.
         Can optionally refine search with locale info.
@@ -60,10 +60,19 @@ class Genderize(object):
         :type country_id: Optional[str]
         :param language_id: Optional ISO 639-1 language code.
         :type language_id: Optional[str]
-        :return: List of dicts containing 'name', 'gender',
-                 'probability', 'count' keys. If 'gender' is None,
-                 'probability' and 'count' will be omitted.
-        :rtype: Sequence[dict]
+        :param retheader: Optional
+        :type retheader: Optional[boolean]
+        :return:
+        If retheader is False:
+            List of dicts containing 'name', 'gender',
+                     'probability', 'count' keys. If 'gender' is None,
+                     'probability' and 'count' will be omitted.
+        else:
+            A dict containing 'data' and 'headers' keys.
+            Data is the same as when retheader is False.
+            Headers are the response header
+            (a requests.structures.CaseInsensitiveDict).
+        :rtype: Union[dict, Sequence[dict]]
         :raises GenderizeException: if API server returns HTTP error code.
         """
         params = [('name[]', name) for name in names]
@@ -82,7 +91,8 @@ class Genderize(object):
             status = "server responded with {http_code}: {reason}".format(
                 http_code=response.status_code, reason=response.reason)
             raise GenderizeException(
-                'response not in JSON format ({status})'.format(status=status))
+                'response not in JSON format ({status})'.format(status=status),
+                response.headers)
 
         decoded = response.json()
         if response.ok:
@@ -90,13 +100,27 @@ class Genderize(object):
             # but a list for multiple names.
             if not isinstance(decoded, list):
                 decoded = [decoded]
-            return self._fixtypes([self._fixtypes(data) for data in decoded])
+            decoded = [self._fixtypes(data) for data in decoded]
+            if not retheader:
+                return decoded
+            else:
+                return {
+                    "data": decoded,
+                    "headers": response.headers
+                }
         else:
-            raise GenderizeException(decoded['error'], response.status_code)
+            raise GenderizeException(
+                decoded['error'],
+                response.status_code,
+                response.headers)
 
     def get1(self, name, **kwargs):
         """
         Look up gender for a single name.
         See :py:meth:`get`.
+        Doesn't support retheader option.
         """
+        if 'retheader' in kwargs:
+            raise GenderizeException(
+                "get1() doesn't support the retheader option.")
         return self.get([name], **kwargs)[0]

@@ -37,3 +37,15 @@ def test_invalid_api_key():
     except GenderizeException:
         caught = True
     assert caught, "Expected a GenderizeException to be thrown"
+
+
+def test_with_headers():
+    """
+    Retrieve a single name with response headers.
+    """
+    response = Genderize().get(['Peter'], retheader=True)
+    assert response['data'][0]['name'] == 'Peter', "Expected name data to be returned"
+    assert response['headers'], "Expected response headers to be returned"
+    for header in ['X-Rate-Limit-Limit', 'X-Rate-Limit-Remaining', 'X-Rate-Reset']:
+        assert header in response['headers'],\
+            "Expected {0} header to be returned".format(header)
