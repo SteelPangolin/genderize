@@ -5,4 +5,5 @@ dist
 venv
 build
 .idea
+*.iml
 docs/_build
