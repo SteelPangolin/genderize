@@ -5,7 +5,7 @@ Client for Genderize.io web service.
 import requests
 
 __all__ = ['Genderize', 'GenderizeException']
-__version__ = '0.1.4'
+__version__ = '0.1.5'
 
 
 class GenderizeException(Exception):

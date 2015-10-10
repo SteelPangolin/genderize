@@ -1,6 +1,14 @@
 Change Log
 ----------
 
+0.1.5
+~~~~~
+
+2015-10-09
+
+* Incorporated `vionemc <https://github.com/vionemc>`_'s patch for `optionally returning response headers <https://github.com/SteelPangolin/genderize/pull/5>`_. Anyone that wants to inspect the rate limit headers should set `retheader=True`.
+* Now tested on Python 3.5 as well.
+
 0.1.4
 ~~~~~
 
