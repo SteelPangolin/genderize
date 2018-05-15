@@ -9,11 +9,9 @@ python:
   - 'pypy3'
 install:
   - pip install -r requirements.txt
-  - pip install flake8
+  - pip install -r requirements-dev.txt
 script:
-  - flake8 setup.py
-  - flake8 test.py
-  - flake8 genderize
+  - flake8 setup.py test.py genderize
   - nosetests --with-coverage --cover-package genderize
 deploy:
   provider: pypi
@@ -21,6 +19,7 @@ deploy:
   password:
     secure: ESeqX6NhNQmNUOFwy5YS3JyZIQqL83zKTd69boBinjnOP8VfL/STfwN0/ZXTQE5+agJDoKN3jlLTbxYi8bgyp8GwD3P8nylg0Lx8VbjemOQcpSQ9zeRpIKGvz9EG50nWR+7vGJQIKsb5hWJDNtcPnYIDY/2tr/kFUzCG3jz6a0Y=
   on:
+    python: '3.6'
     tags: true
     repo: SteelPangolin/genderize
   distributions: "sdist bdist_wheel"
