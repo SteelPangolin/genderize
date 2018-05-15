@@ -1,6 +1,15 @@
 Change Log
 ----------
 
+0.2.0
+~~~~~
+
+2018-05-15
+
+* Now respects the API limit of 10 names per request, and will break up larger name lists into multiple API requests transparently. This closes `issue #6 <https://github.com/SteelPangolin/genderize/issues/6>`_, reported by `neginahoomi <https://github.com/neginahoomi>`_.
+* Now tested on Python 3.6, PyPy 2, and PyPy 3 as well, and generates Codecov coverage reports.
+* Updated author's contact info.
+
 0.1.5
 ~~~~~
 

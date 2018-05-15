@@ -6,12 +6,17 @@ python:
   - '3.3'
   - '3.4'
   - '3.5'
+  - '3.6'
+  - 'pypy'
+  - 'pypy3'
 install:
   - pip install -r requirements.txt
   - pip install flake8
 script:
+  - flake8 setup.py
+  - flake8 test.py
   - flake8 genderize
-  - nosetests
+  - nosetests --with-coverage --cover-package genderize
 deploy:
   provider: pypi
   user: SteelPangolin
@@ -22,4 +27,5 @@ deploy:
     repo: SteelPangolin/genderize
   distributions: "sdist bdist_wheel"
 after_success:
+  - bash <(curl -s https://codecov.io/bash)
   - curl -X POST https://readthedocs.org/build/genderize

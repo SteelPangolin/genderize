@@ -2,10 +2,13 @@
 Client for Genderize.io web service.
 """
 
+from collections import namedtuple
+from itertools import chain, islice
+
 import requests
 
 __all__ = ['Genderize', 'GenderizeException']
-__version__ = '0.1.5'
+__version__ = '0.2.0'
 
 
 class GenderizeException(Exception):
@@ -14,11 +17,19 @@ class GenderizeException(Exception):
     """
 
 
+# Response from a single web service call.
+_GenderizeResponse = namedtuple('_GenderizeResponse', ('data', 'headers'))
+
+
 class Genderize(object):
     """
     Client for Genderize.io web service.
     Uses a Requests session for persistent HTTP connections.
     """
+
+    # API requests are now limited to this many names per request.
+    # https://genderize.io/#multipleusage
+    BATCH_SIZE = 10
 
     def __init__(self, user_agent=None, api_key=None):
         """
@@ -53,6 +64,8 @@ class Genderize(object):
         """
         Look up gender for a list of names.
         Can optionally refine search with locale info.
+        May make multiple requests if there are more names than
+        can be retrieved in one call.
 
         :param names: List of names.
         :type names: Iterable[str]
@@ -72,11 +85,37 @@ class Genderize(object):
             Data is the same as when retheader is False.
             Headers are the response header
             (a requests.structures.CaseInsensitiveDict).
+            If multiple requests were made,
+            the header will be from the last one.
         :rtype: Union[dict, Sequence[dict]]
         :raises GenderizeException: if API server returns HTTP error code.
         """
-        params = [('name[]', name) for name in names]
-        if self.api_key is not None:
+        responses = [
+            self._get_chunk(name_chunk, country_id, language_id)
+            for name_chunk
+            in _chunked(names, Genderize.BATCH_SIZE)
+        ]
+        data = list(chain.from_iterable(
+            response.data for response in responses
+        ))
+        if retheader:
+            return {
+                "data": data,
+                "headers": responses[-1].headers,
+            }
+        else:
+            return data
+
+    def _get_chunk(self, name_chunk, country_id, language_id):
+        """
+
+        :type name_chunk: Iterable[str]
+        :type country_id: Optional[str]
+        :type language_id: Optional[str]
+        :rtype:
+        """
+        params = [('name[]', name) for name in name_chunk]
+        if self.api_key:
             params.append(('apikey', self.api_key))
         if country_id:
             params.append(('country_id', country_id))
@@ -101,13 +140,7 @@ class Genderize(object):
             if not isinstance(decoded, list):
                 decoded = [decoded]
             decoded = [self._fixtypes(data) for data in decoded]
-            if not retheader:
-                return decoded
-            else:
-                return {
-                    "data": decoded,
-                    "headers": response.headers
-                }
+            return _GenderizeResponse(data=decoded, headers=response.headers)
         else:
             raise GenderizeException(
                 decoded['error'],
@@ -124,3 +157,19 @@ class Genderize(object):
             raise GenderizeException(
                 "get1() doesn't support the retheader option.")
         return self.get([name], **kwargs)[0]
+
+
+def _chunked(iterable, n):
+    """
+    Collect data into chunks of up to length n.
+    :type iterable: Iterable[T]
+    :type n: int
+    :rtype: Iterator[list[T]]
+    """
+    it = iter(iterable)
+    while True:
+        chunk = list(islice(it, n))
+        if chunk:
+            yield chunk
+        else:
+            return

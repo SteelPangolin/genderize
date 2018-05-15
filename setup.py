@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import re
 import io
-import os.path
+import os
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -24,8 +24,8 @@ setup(
     version=version,
     description='Client for Genderize.io web service.',
     long_description=long_description,
-    author='Jeremy Ehrhardt',
-    author_email='jeremy@bat-country.us',
+    author='Erica Ehrhardt',
+    author_email='955421+SteelPangolin@users.noreply.github.com',
     license='MIT',
     url='https://github.com/SteelPangolin/genderize',
     packages=find_packages(),
@@ -45,6 +45,7 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
 )
