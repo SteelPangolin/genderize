@@ -8,3 +8,5 @@ build
 *.iml
 docs/_build
 .coverage
+._*
+.DS_Store
