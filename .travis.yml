@@ -1,3 +1,6 @@
+sudo: false
+dist: trusty
+
 language: python
 python:
   - '2.7'
@@ -7,12 +10,15 @@ python:
   - '3.6'
   - 'pypy'
   - 'pypy3'
+
 install:
   - pip install -r requirements.txt
   - pip install -r requirements-dev.txt
+
 script:
   - flake8 setup.py test.py genderize
   - nosetests --with-coverage --cover-package genderize
+
 deploy:
   provider: pypi
   user: SteelPangolin
@@ -23,6 +29,7 @@ deploy:
     tags: true
     repo: SteelPangolin/genderize
   distributions: "sdist bdist_wheel"
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - curl -X POST https://readthedocs.org/build/genderize
