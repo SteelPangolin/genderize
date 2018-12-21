@@ -22,7 +22,7 @@ Client for the `Genderize.io <https://genderize.io/>`_ web service.
 Basic usage
 -----------
 
-Import the `Genderize` class and call its `get` method with a list of names.
+Import the ``Genderize`` class and call its ``get`` method with a list of names.
 
 ::
 
@@ -55,7 +55,7 @@ If run as a script, takes a list of names on stdin, and prints them with their g
 Advanced usage
 --------------
 
-Create a `Genderize` instance with a custom user agent,
+Create a ``Genderize`` instance with a custom user agent,
 and an `API key <https://store.genderize.io/>`_.
 Note that you'll need to use your own API key or this example won't work.
 
@@ -88,10 +88,10 @@ Setup for local development:
 
 Release checklist:
 
-#. Generate a new version number: `major.minor.micro`. It should be compatible with both `PEP 440 <https://www.python.org/dev/peps/pep-0440/>`_ and `SemVer 2.0.0 <https://semver.org/>`_.
-#. Update `__version__` in `genderize/__init__.py`. This is read by `setup.py` and doesn't need to be changed there.
-#. Add a changelog entry and date for the new version in `CHANGES.rst`.
+#. Generate a new version number: ``major.minor.micro``. It should be compatible with both `PEP 440 <https://www.python.org/dev/peps/pep-0440/>`_ and `SemVer 2.0.0 <https://semver.org/>`_.
+#. Update ``__version__`` in ``genderize/__init__.py``. This is read by ``setup.py`` and doesn't need to be changed there.
+#. Add a changelog entry and date for the new version in ``CHANGES.rst``.
 #. Commit the changes. This may be done as part of another change.
-#. Tag the commit with `git tag major.minor.micro`.
-#. Push the tag to GitHub with `git push origin major.minor.micro`.
+#. Tag the commit with ``git tag major.minor.micro``.
+#. Push the tag to GitHub with ``git push origin major.minor.micro``.
 #. Travis will create a new PyPI release from the tag.
