@@ -8,7 +8,7 @@ from itertools import chain, islice
 import requests
 
 __all__ = ['Genderize', 'GenderizeException']
-__version__ = '0.2.0'
+__version__ = '0.3.0'
 
 
 class GenderizeException(Exception):
@@ -31,17 +31,20 @@ class Genderize(object):
     # https://genderize.io/#multipleusage
     BATCH_SIZE = 10
 
-    def __init__(self, user_agent=None, api_key=None):
+    def __init__(self, user_agent=None, api_key=None, timeout=30.0):
         """
         :param user_agent: Optional user agent string.
-        :type user_agent: string
+        :type user_agent: Optional[str]
         :param api_key: Optional API key.
-        :type api_key: string
+        :type api_key: Optional[str]
+        :param timeout: Optional connect/read timeout in seconds.
+        :type timeout: Optional[float]
         """
         if user_agent is None:
             user_agent = 'Genderize/{0}'.format(__version__)
 
         self.api_key = api_key
+        self.timeout = timeout
 
         self.session = requests.Session()
         self.session.headers = {'User-Agent': user_agent}
@@ -124,7 +127,8 @@ class Genderize(object):
 
         response = self.session.get(
             'https://api.genderize.io/',
-            params=params)
+            params=params,
+            timeout=self.timeout)
 
         if 'application/json' not in response.headers.get('content-type', ''):
             status = "server responded with {http_code}: {reason}".format(

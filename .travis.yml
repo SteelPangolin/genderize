@@ -32,6 +32,8 @@ deploy:
     tags: true
     repo: SteelPangolin/genderize
   distributions: "sdist bdist_wheel"
+  skip_existing: true
+  skip_cleanup: true
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

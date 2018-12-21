@@ -56,7 +56,8 @@ Advanced usage
 --------------
 
 Create a ``Genderize`` instance with a custom user agent,
-and an `API key <https://store.genderize.io/>`_.
+an `API key <https://store.genderize.io/>`_,
+and a shorter timeout than the default 30 seconds.
 Note that you'll need to use your own API key or this example won't work.
 
 ::
@@ -64,7 +65,8 @@ Note that you'll need to use your own API key or this example won't work.
     from genderize import Genderize
     genderize = Genderize(
         user_agent='GenderizeDocs/0.0',
-        api_key='example_api_key')
+        api_key='example_api_key',
+        timeout=5.0)
     print(genderize.get(['James', 'Eva', 'Thunderhorse']))
 
 ::

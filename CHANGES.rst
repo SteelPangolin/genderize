@@ -1,6 +1,15 @@
 Change Log
 ----------
 
+0.3.0
+~~~~~
+
+2018-12-21
+
+* Added support for `Requests connection/read timeouts <http://docs.python-requests.org/en/master/user/advanced/#timeouts>`_, with a default of 30 seconds.
+* Now tested on Python 3.7.
+* Added fix to ``.travis.yml`` for broken PyPI publishing. See `travis-ci/dpl #861 <https://github.com/travis-ci/dpl/issues/861>`_ and `Releasing build artifacts <https://docs.travis-ci.com/user/deployment/pypi/#releasing-build-artifacts>`_.
+
 0.2.0
 ~~~~~
 
