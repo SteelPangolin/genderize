@@ -8,7 +8,7 @@ from itertools import chain, islice
 import requests
 
 __all__ = ['Genderize', 'GenderizeException']
-__version__ = '0.3.0'
+__version__ = '0.3.1'
 
 
 class GenderizeException(Exception):

@@ -1,6 +1,13 @@
 Change Log
 ----------
 
+0.3.1
+~~~~~
+
+2018-12-24
+
+* Added missing ``setup.py`` classifier for Python 3.7.
+
 0.3.0
 ~~~~~
 
